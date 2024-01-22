@@ -1,13 +1,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: prometheus
+  name: kube-prometheus-stack
 spec:
   interval: 5m
   chart:
     spec:
-      version: "45.x"
-      chart: prometheus
+      version: "55.x"
+      chart: kube-prometheus-stack
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
@@ -39,7 +39,7 @@ spec:
           - target:
               # Ignore these objects from Flux diff as they are mutated from chart hooks
               kind: (ValidatingWebhookConfiguration|MutatingWebhookConfiguration)
-              name: prometheus-admission
+              name: kube-prometheus-stack-admission
             patch: |
               - op: add
                 path: /metadata/annotations/helm.toolkit.fluxcd.io~1driftDetection
