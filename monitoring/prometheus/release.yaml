@@ -39,7 +39,7 @@ spec:
           - target:
               # Ignore these objects from Flux diff as they are mutated from chart hooks
               kind: (ValidatingWebhookConfiguration|MutatingWebhookConfiguration)
-              name: kube-prometheus-stack-admission
+              name: prometheus-admission
             patch: |
               - op: add
                 path: /metadata/annotations/helm.toolkit.fluxcd.io~1driftDetection
