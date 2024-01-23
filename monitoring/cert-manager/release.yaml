@@ -13,7 +13,7 @@ spec:
       version: v1.13.x
       sourceRef:
         kind: HelmRepository
-        name: jetstack
+        name: cert-manager
         namespace: flux-system
       interval: 12h
   install:
