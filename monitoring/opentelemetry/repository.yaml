@@ -5,7 +5,5 @@ metadata:
   name: opentelemetry
   namespace: monitoring
 spec:
-  interval: 10m0s
-  provider: generic
-  timeout: 1m0s
+  interval: 1m0s
   url: https://open-telemetry.github.io/opentelemetry-helm-charts
