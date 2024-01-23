@@ -1,24 +1,20 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: opentelemetry-operator
-  namespace: opentelemetry
+  namespace: monitoring
 spec:
-  interval: 5m
-  # dependsOn:
-  #   - name: cert-manager
   chart:
     spec:
       chart: opentelemetry-operator
-      version: "0.32.0"
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: open-telemetry
-        namespace: flux-system
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    remediation:
-      retries: 3
+        name: opentelemetry
+        namespace: monitoring
+  interval: 1m0s
+  values:
+    admissionWebhooks.certManager.autoGenerateCert.enabled: true
+    admissionWebhooks.certManager.enabled: false
+    manager.featureGates: operator.autoinstrumentation.go
