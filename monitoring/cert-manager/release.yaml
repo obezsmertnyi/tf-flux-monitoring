@@ -1,26 +1,19 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: cert-manager
-  namespace: cert-manager
+  namespace: monitoring
 spec:
-  interval: 30m
   chart:
     spec:
-      # renovate: registryUrl=https://charts.jetstack.io/
       chart: cert-manager
-      version: v1.13.x
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: cert-manager
-        namespace: flux-system
-      interval: 12h
-  install:
-    crds: Create
-  upgrade:
-    crds: CreateReplace
+        namespace: monitoring
+      version: 1.13.x
+  interval: 1m0s
   values:
-    installCRDs: false
-    webhook:
-      enabled: false
+    installCRDs: true
