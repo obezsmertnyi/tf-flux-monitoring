@@ -5,13 +5,11 @@ namespace: grafana-tempo
 resources:
 - namespace.yaml
 - release.yaml
+- clusterrole.yaml
+- deployment.yaml
+- service.yaml
+- tempo-patch.yaml
 
-- agent/clusterrole.yaml
-- agent/clusterrolebinding.yaml
-- agent/deployment.yaml
-- agent/service.yaml
-- agent/serviceaccount.yaml
-- agent/servicemonitor.yaml
 
 configMapGenerator:
 - name: grafana-agent-traces
